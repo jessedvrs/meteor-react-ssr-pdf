@@ -10,13 +10,17 @@ import SomePDF from '/imports/server/SomePDF';
 
 Meteor.methods({
     'create-pdf': (text) => {
+
+        // Get HTML string for the React element
         const reactContent = <SomePDF content={text} />;
         const html = ReactDOMServer.renderToString(reactContent);
 
+        // Get CSS string for the SCSS code
         const css = sass.renderSync({
             file: Assets.absoluteFilePath('SomePDF.scss')
         }).css.toString();
 
+        // Bring together in HTML template
         const fullHtml = `
             <!DOCTYPE html>
             <html lang="en">
@@ -31,11 +35,13 @@ Meteor.methods({
             </html>
         `;
 
+        // Make up a filename
         const timestamp = new Date().getTime();
         const filename = `illuminati_${timestamp}.pdf`;
         const dest = path.join(process.env.PWD, '.files', filename);
 
-        const generatePDF = Meteor.wrapAsync((done) => {
+        // Generate a PDF using Phantom (synchronously)
+        Meteor.wrapAsync((done) => {
             let sitepage;
             let phInstance;
 
@@ -69,10 +75,7 @@ Meteor.methods({
                     phInstance.exit();
                     done(error);
                 });
-        });
-
-        const info = generatePDF();
-        console.log('Created PDF. Filesize: %d bytes', info.filesize);
+        })();
 
         return filename;
     }
