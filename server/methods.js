@@ -10,10 +10,7 @@ import SomePDF from '/imports/server/SomePDF';
 
 Meteor.methods({
     'create-pdf': (text) => {
-        const reactContent = React.createElement(SomePDF, {
-            content: text
-        });
-
+        const reactContent = <SomePDF content={text} />;
         const html = ReactDOMServer.renderToString(reactContent);
 
         const css = sass.renderSync({
