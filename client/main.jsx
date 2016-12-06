@@ -38,10 +38,10 @@ class Page extends Component {
     render() {
         return (
             <div className='demo--page'>
-                <h1>React PDF machine</h1>
+                <h1>Cool PDF Machine</h1>
                 <div className='demo--single-input-form'>
                     <form onSubmit={this.onSubmit}>
-                        <TextField name='text' floatingLabelText='Insert some text' className='input' />
+                        <TextField name='text' className='input' />
                         <RaisedButton label='Download PDF' primary={true} className='button' type='submit' />
                     </form>
                 </div>

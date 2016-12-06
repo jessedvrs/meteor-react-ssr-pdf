@@ -1,5 +1,12 @@
+body {
+    background-color: #111;
+    color: white;
+}
+
 .demo--page {
     width: 420px;
+    margin-top: 120px;
+    padding: 60px;
     margin-left: auto;
     margin-right: auto;
     font-family: 'Roboto', sans-serif;
@@ -8,11 +15,16 @@
 .demo--single-input-form {
     .input {
         float: left;
+
+        input,
+        label {
+            color: white !important;
+        }
     }
 
     .button {
         float: right;
-        margin-top: 30px;
+        margin-top: 4px;
     }
 
     &::after {
