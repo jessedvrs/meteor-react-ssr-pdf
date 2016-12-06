@@ -1,5 +1,5 @@
 {
-  "name": "demo",
+  "name": "meteor-react-ssr-pdf",
   "private": true,
   "scripts": {
     "start": "meteor run"
