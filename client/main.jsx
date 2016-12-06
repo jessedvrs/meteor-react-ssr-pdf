@@ -27,7 +27,9 @@ class Page extends Component {
         event.preventDefault();
 
         Meteor.call('create-pdf', event.target.elements.text.value, (err, filename) => {
-            location.href = Meteor.absoluteUrl(`pdf/${filename}`);
+            if (filename) {
+                location.href = Meteor.absoluteUrl(`pdf/${filename}`);
+            }
         });
 
         event.target.reset();
